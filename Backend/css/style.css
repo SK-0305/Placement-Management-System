@@ -1,0 +1,128 @@
+/* ===== General Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* ===== Body ===== */
+body {
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ===== Container (form / dashboard card) ===== */
+.form-container {
+    width: 400px;
+    max-width: 95%;
+    margin: 60px auto;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* ===== Headings ===== */
+h1, h2 {
+    margin-bottom: 20px;
+    color: #222;
+}
+
+/* ===== Form Inputs ===== */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+/* ===== Submit Button ===== */
+input[type="submit"], .btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+input[type="submit"]:hover,
+.btn:hover {
+    background: #0056b3;
+}
+
+/* ===== Links ===== */
+a {
+    display: inline-block;
+    margin: 10px 5px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* ===== Table Styling ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th {
+    background: #007bff;
+    color: #fff;
+    padding: 12px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+tr:hover {
+    background: #eef6ff;
+}
+
+/* ===== Dashboard Container ===== */
+.dashboard {
+    width: 600px;
+    max-width: 95%;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
