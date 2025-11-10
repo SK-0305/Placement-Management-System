@@ -1,34 +1,36 @@
-<?php include("db.php"); session_start(); ?>
+<?php include("db.php"); include("header.php"); ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>TPO Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div class="form-container">
-    <h1>TPO/Admin Login</h1>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Admin Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <input type="submit" name="login" value="Login">
-    </form>
+<div class="container mt-5">
+  <div class="card mx-auto shadow" style="max-width: 400px;">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Student Login</h3>
+      <form method="POST">
+        <div class="mb-3">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" name="password" class="form-control" placeholder="Password" required>
+        </div>
+        <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
+      </form>
+      <p class="text-center mt-3">
+        No account? <a href="register.php">Register here</a>
+      </p>
+    </div>
+  </div>
 </div>
-</body>
-</html>
 
 <?php
-// Simple static admin login (you can also create an 'admin' table in DB)
 if (isset($_POST['login'])) {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
+    $email = $_POST['email'];
+    $pass = md5($_POST['password']);
 
-    if ($user == "tpo" && $pass == "admin123") {   // hardcoded credentials
-        $_SESSION['admin'] = $user;
-        header("Location: tpo_dashboard.php");
+    $result = $conn->query("SELECT * FROM students WHERE email='$email' AND password='$pass'");
+    if ($result->num_rows > 0) {
+        $_SESSION['student'] = $email;
+        header("Location: dashboard.php");
     } else {
-        echo "<script>alert('Invalid Admin Credentials');</script>";
+        echo "<script>alert('Invalid Login');</script>";
     }
 }
 ?>

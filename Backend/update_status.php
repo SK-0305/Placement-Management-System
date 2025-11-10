@@ -1,49 +1,48 @@
-<?php include("db.php"); session_start();
+<?php include("db.php"); include("header.php");
 if(!isset($_SESSION['admin'])) { header("Location: admin.php"); exit; }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Update Status</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div class="form-container">
-    <h1>Update Student Placement Status</h1>
-    <table border="1" width="100%">
-        <tr>
-            <th>Student</th><th>Company</th><th>Status</th><th>Action</th>
-        </tr>
-        <?php
-        $result = $conn->query("SELECT a.app_id, s.name AS student, c.name AS company, a.status 
-                                FROM applications a 
-                                JOIN students s ON a.student_id = s.student_id 
-                                JOIN companies c ON a.company_id = c.company_id");
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-warning">
+      <h4 class="mb-0 text-dark">Update Student Placement Status</h4>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+          <tr><th>Student</th><th>Company</th><th>Status</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <?php
+          $result = $conn->query("SELECT a.app_id, s.name AS student, c.name AS company, a.status 
+                                  FROM applications a 
+                                  JOIN students s ON a.student_id = s.student_id 
+                                  JOIN companies c ON a.company_id = c.company_id");
 
-        while($row = $result->fetch_assoc()) {
-            echo "<tr>
+          while($row = $result->fetch_assoc()) {
+              echo "<tr>
                 <td>{$row['student']}</td>
                 <td>{$row['company']}</td>
                 <td>{$row['status']}</td>
                 <td>
-                    <form method='POST'>
-                        <input type='hidden' name='app_id' value='{$row['app_id']}'>
-                        <select name='status'>
-                            <option value='Applied'>Applied</option>
-                            <option value='Selected'>Selected</option>
-                            <option value='Rejected'>Rejected</option>
-                        </select>
-                        <input type='submit' name='update' value='Update'>
-                    </form>
+                  <form method='POST' class='d-flex'>
+                    <input type='hidden' name='app_id' value='{$row['app_id']}'>
+                    <select name='status' class='form-select me-2'>
+                        <option value='Applied'>Applied</option>
+                        <option value='Selected'>Selected</option>
+                        <option value='Rejected'>Rejected</option>
+                    </select>
+                    <input type='submit' name='update' class='btn btn-sm btn-primary' value='Update'>
+                  </form>
                 </td>
-            </tr>";
-        }
-        ?>
-    </table>
+              </tr>";
+          }
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-</body>
-</html>
 
 <?php
 if (isset($_POST['update'])) {

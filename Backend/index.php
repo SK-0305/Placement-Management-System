@@ -1,30 +1,32 @@
-<?php include("db.php"); session_start(); ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div class="form-container">
-    <h1>Student Login</h1>
-    <form method="POST">
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <input type="submit" name="login" value="Login">
-    </form>
-    <p>No account? <a href="register.php">Register</a></p>
+<?php include("db.php"); include("header.php"); ?>
+
+<div class="container mt-5">
+  <div class="card mx-auto shadow" style="max-width: 450px;">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Student Login</h3>
+      <form method="POST">
+        <div class="mb-3">
+          <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required>
+        </div>
+        <button type="submit" name="login" class="btn btn-primary btn-lg w-100">Login</button>
+      </form>
+      <p class="text-center mt-3">
+        No account? <a href="register.php">Register here</a>
+      </p>
+    </div>
+  </div>
 </div>
-</body>
-</html>
 
 <?php
-if (isset($_POST['login'])) {
+if(isset($_POST['login'])){
     $email = $_POST['email'];
     $pass = md5($_POST['password']);
 
     $result = $conn->query("SELECT * FROM students WHERE email='$email' AND password='$pass'");
-    if ($result->num_rows > 0) {
+    if($result->num_rows > 0){
         $_SESSION['student'] = $email;
         header("Location: dashboard.php");
     } else {

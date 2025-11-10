@@ -1,40 +1,30 @@
-<?php include("db.php"); ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Register</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div class="form-container">
-    <h1>Student Registration</h1>
-    <form method="POST">
-        <input type="text" name="name" placeholder="Full Name" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <input type="text" name="branch" placeholder="Branch" required><br>
-        <input type="number" step="0.01" name="cgpa" placeholder="CGPA" required><br>
-        <input type="submit" name="register" value="Register">
-    </form>
-    <p>Already have an account? <a href="index.php">Login</a></p>
+<?php include("db.php"); include("header.php"); ?>
+
+<div class="container mt-5">
+  <div class="card mx-auto shadow" style="max-width: 450px;">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">Student Registration</h3>
+      <form method="POST">
+        <div class="mb-3">
+          <input type="text" name="name" class="form-control form-control-lg" placeholder="Full Name" required>
+        </div>
+        <div class="mb-3">
+          <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+          <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required>
+        </div>
+        <div class="mb-3">
+          <input type="text" name="branch" class="form-control form-control-lg" placeholder="Branch" required>
+        </div>
+        <div class="mb-3">
+          <input type="number" step="0.01" name="cgpa" class="form-control form-control-lg" placeholder="CGPA" required>
+        </div>
+        <button type="submit" name="register" class="btn btn-primary btn-lg w-100">Register</button>
+      </form>
+      <p class="text-center mt-3">
+        Already have an account? <a href="index.php">Login</a>
+      </p>
+    </div>
+  </div>
 </div>
-</body>
-</html>
-
-<?php
-if (isset($_POST['register'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $pass = md5($_POST['password']);
-    $branch = $_POST['branch'];
-    $cgpa = $_POST['cgpa'];
-
-    $sql = "INSERT INTO students (name, email, password, branch, cgpa)
-            VALUES ('$name', '$email', '$pass', '$branch', '$cgpa')";
-    if ($conn->query($sql)) {
-        echo "<script>alert('Registration successful!'); window.location='index.php';</script>";
-    } else {
-        echo "Error: " . $conn->error;
-    }
-}
-?>

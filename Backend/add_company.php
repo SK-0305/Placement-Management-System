@@ -1,27 +1,18 @@
-<?php include("db.php"); session_start();
+<?php include("db.php"); include("header.php");
 if(!isset($_SESSION['admin'])) { header("Location: admin.php"); exit; }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Company</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<div class="form-container">
-    <h1>Add Company</h1>
-    <form method="POST">
-        <input type="text" name="name" placeholder="Company Name" required><br>
-        <input type="text" name="role" placeholder="Job Role" required><br>
-        <input type="number" step="0.01" name="package" placeholder="Package (LPA)" required><br>
-        <input type="number" step="0.01" name="eligibility_cgpa" placeholder="Eligibility CGPA" required><br>
-        <input type="date" name="drive_date" required><br>
-        <input type="submit" name="add" value="Add Company">
-    </form>
+<div class="container-box">
+  <h1 class="text-center mb-4">Add Company</h1>
+  <form method="POST">
+    <input type="text" name="name" class="form-control mb-2" placeholder="Company Name" required>
+    <input type="text" name="role" class="form-control mb-2" placeholder="Job Role" required>
+    <input type="number" step="0.01" name="package" class="form-control mb-2" placeholder="Package (LPA)" required>
+    <input type="number" step="0.01" name="eligibility_cgpa" class="form-control mb-2" placeholder="Eligibility CGPA" required>
+    <input type="date" name="drive_date" class="form-control mb-2" required>
+    <input type="submit" name="add" class="btn btn-success w-100" value="Add Company">
+  </form>
 </div>
-</body>
-</html>
 
 <?php
 if (isset($_POST['add'])) {

@@ -1,10 +1,10 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
+$servername = "localhost";
+$username = "root";   // default XAMPP user
+$password = "";       // leave empty unless you set MySQL password
 $dbname = "placement_db";
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
